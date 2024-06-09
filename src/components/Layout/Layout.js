@@ -8,8 +8,8 @@ import styles from './Layout.module.scss';
 const Layout = ({ children, className, ...rest }) => {
   let layoutClassName = styles.layout;
 
-  if ( className ) {
-    layoutClassName = `${layoutClassName} ${className}`
+  if (className) {
+    layoutClassName = `${layoutClassName} ${className}`;
   }
 
   return (
@@ -18,10 +18,10 @@ const Layout = ({ children, className, ...rest }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className={styles.main}>{ children }</main>
+      <main className={styles.main}>{children}</main>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 export default Layout;

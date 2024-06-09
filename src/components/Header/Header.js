@@ -10,12 +10,12 @@ const Header = () => {
       <Container className={styles.headerContainer}>
         <p className={styles.headerTitle}>
           <Link href="/">
-            <a>My Images</a>
+            My Images
           </Link>
         </p>
       </Container>
     </header>
-  )
-}
+  );
+};
 
 export default Header;

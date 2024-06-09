@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import Head from 'next/head'
-import Image from 'next/image'
+import Head from 'next/head';
+import Image from 'next/image';
 
 import Layout from '@components/Layout';
 import Container from '@components/Container';
@@ -8,7 +8,7 @@ import Button from '@components/Button';
 
 import { search, mapImageResources, getFolders } from '../lib/cloudinary';
 
-import styles from '@styles/Home.module.scss'
+import styles from '@styles/Home.module.scss';
 
 export default function Home({ images: defaultImages, nextCursor: defaultNextCursor, totalCount: defaultTotalCount, folders }) {
   const [images, setImages] = useState(defaultImages);
@@ -31,19 +31,17 @@ export default function Home({ images: defaultImages, nextCursor: defaultNextCur
 
     const images = mapImageResources(resources);
 
-    setImages(prev => {
-      return [
-        ...prev,
-        ...images
-      ]
-    });
+    setImages(prev => [
+      ...prev,
+      ...images
+    ]);
     setNextCursor(nextPageCursor);
     setTotalCount(updatedTotalCount);
   }
 
   function handleOnFolderClick(e) {
     const folderPath = e.target.dataset.folderPath;
-    setActiveFolder(folderPath)
+    setActiveFolder(folderPath);
     setNextCursor(undefined);
     setImages([]);
     setTotalCount(0);
@@ -85,29 +83,25 @@ export default function Home({ images: defaultImages, nextCursor: defaultNextCur
             const isActive = folder.path === activeFolder;
             return (
               <li key={folder.path} data-active-folder={isActive}>
-                <button data-folder-path={folder.path} >{ folder.name }</button>
+                <button data-folder-path={folder.path}>{folder.name}</button>
               </li>
-            )
+            );
           })}
         </ul>
 
         <h2 className={styles.header}>Images</h2>
 
         <ul className={styles.images}>
-          {images.map(image => {
-            return (
-              <li key={image.id}>
-                <a href={image.link} rel="noreferrer">
-                  <div className={styles.imageImage}>
-                    <Image width={image.width} height={image.height} src={image.image} alt="" />
-                  </div>
-                  <h3 className={styles.imageTitle}>
-                    { image.title }
-                  </h3>
-                </a>
-              </li>
-            )
-          })}
+          {images.map(image => (
+            <li key={image.id}>
+              <a href={image.link} rel="noreferrer">
+                <div className={styles.imageImage}>
+                  <Image width={image.width} height={image.height} src={image.image} alt="" />
+                </div>
+                <h3 className={styles.imageTitle}>{image.title}</h3>
+              </a>
+            </li>
+          ))}
         </ul>
         {totalCount > images.length && (
           <p>
@@ -116,7 +110,7 @@ export default function Home({ images: defaultImages, nextCursor: defaultNextCur
         )}
       </Container>
     </Layout>
-  )
+  );
 }
 
 export async function getStaticProps() {
@@ -137,5 +131,5 @@ export async function getStaticProps() {
       totalCount,
       folders
     }
-  }
+  };
 }
